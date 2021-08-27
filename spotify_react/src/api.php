@@ -3,7 +3,7 @@ header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 
 try {
-    $db = new PDO("mysql:host=localhost;port=8889;dbname=spotify;", "root", "abdelpci");
+    $db = new PDO("mysql:host=localhost;port=8889;dbname=spotify;", "username", "password");
 } catch (Exception $e) {
     $return["success"] = false;
     $return["message"] = "Connexion à la base de données impossible.";

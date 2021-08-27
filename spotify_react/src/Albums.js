@@ -1,7 +1,6 @@
-import React from 'react';
-import './Albums.css';
-import {Link} from "react-router-dom";
-
+import React from "react";
+import "./Albums.css";
+import { Link } from "react-router-dom";
 
 class Albums extends React.Component {
   constructor(props) {
@@ -14,7 +13,7 @@ class Albums extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost/dev_env/spotify_project/spotify_react/src/api.php")
+    fetch("http://localhost:8000/api.php")
       .then((res) => res.json())
       .then(
         (result) => {
@@ -62,7 +61,7 @@ class Albums extends React.Component {
         <div className="album-container">
           {test.map((key) => (
             <div className="albumList">
-              <Link className="album" to={path + key['id']}>
+              <Link className="album" to={path + key["id"]}>
                 <img src={key["cover_small"]}></img>
                 {key["name"]}
               </Link>

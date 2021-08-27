@@ -1,10 +1,8 @@
 import { render } from "react-dom";
-import React, { Component } from 'react';
-import All_Albums from './All_albums';
+import React, { Component } from "react";
+import All_Albums from "./All_albums";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-
-
 
 function Album_detail() {
   const { id } = useParams();
@@ -17,30 +15,30 @@ class Album_detail_comp extends Component {
     this.state = {
       error: null,
       isLoaded: false,
-      items: []
+      items: [],
     };
   }
 
   componentDidMount() {
-    fetch('http://localhost/EPITECH/Semestre%201/RUSH/spotify/W-WEB-090-PAR-1-1-spotify-aime.koutsimouka/spotify_react/src/api.php')
-      .then(res => res.json())
+    fetch("http://localhost:8000/api.php")
+      .then((res) => res.json())
       .then(
         (result) => {
           //   console.log(result);
           let id_get = [this.props.album];
           let single_album = result.artist_id[this.props.album - 1];
-          let all_tracks = result.tracks
+          let all_tracks = result.tracks;
           //   console.log(all_tracks);
           let lol = [];
           Object.keys(all_tracks).forEach(function (key) {
             lol.push(all_tracks[key]);
           });
           let lol1 = [];
-          lol.map(key => {
-            if (key['album_id'] == id_get) {
+          lol.map((key) => {
+            if (key["album_id"] == id_get) {
               lol1.push(key);
             }
-          })
+          });
           // console.log(lol1);
 
           // if (key['album_id'] == id_get) {
@@ -51,7 +49,7 @@ class Album_detail_comp extends Component {
           this.setState({
             isLoaded: true,
             items: single_album,
-            tracks: lol1
+            tracks: lol1,
           });
         },
         // Remarque : il est important de traiter les erreurs ici
@@ -60,10 +58,10 @@ class Album_detail_comp extends Component {
         (error) => {
           this.setState({
             isLoaded: true,
-            error
+            error,
           });
         }
-      )
+      );
   }
 
   render() {
@@ -98,7 +96,16 @@ class Album_detail_comp extends Component {
           </div>
           <div className="audio-container">
             {tracks.map((key) => {
-              return <figcaption><audio className="main-audio" controls src={key['mp3']}></audio>{key['name']}</figcaption>
+              return (
+                <figcaption>
+                  <audio
+                    className="main-audio"
+                    controls
+                    src={key["mp3"]}
+                  ></audio>
+                  {key["name"]}
+                </figcaption>
+              );
             })}
           </div>
         </div>

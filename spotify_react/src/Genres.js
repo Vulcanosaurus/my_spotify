@@ -13,7 +13,7 @@ class Genres extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost/dev_env/spotify_project/spotify_react/src/api.php")
+    fetch("http://localhost:8000/api.php")
       .then((res) => res.json())
       .then(
         (result) => {

@@ -15,9 +15,7 @@ class Search extends React.Component {
   }
 
   async componentDidMount() {
-    const response = await fetch(
-      `http://localhost/dev_env/spotify_project/spotify_react/src/api.php`
-    );
+    const response = await fetch(`http://localhost:8000/api.php`);
     const json = await response.json();
     this.setState({ items: json });
   }
@@ -131,7 +129,7 @@ class Search extends React.Component {
           <div className="album-container">
             {data.map((key, value) => (
               <div className="albumList">
-                <Link className="album" to={path + key['id']}>
+                <Link className="album" to={path + key["id"]}>
                   <p key={key["name"]}>{key["name"]}</p>
                 </Link>
               </div>
